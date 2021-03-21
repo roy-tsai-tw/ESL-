@@ -38,7 +38,7 @@ This example is from "asic-world.com".
  20 }
 ```
 
-However, if you want to separate this example into 3 parts, i.e. hello.h, hello.cpp, and main.cpp.
+You may want to separate this example into 3 parts, i.e. hello.h, hello.cpp, and main.cpp.
 It will look like the following code:
 
 1.hello.h
@@ -126,6 +126,39 @@ Execute it:
         ALL RIGHTS RESERVED
 Hello World.
 
+```
+### The make file I used
+You only need to change LIB_DIR, INC_DIR, TARGET, and SRC_CPPHEAD.
+```
+LIB_DIR=-L/usr/systemc/lib-linux64
+INC_DIR=-I/usr/systemc/include
+TARGET     = hello
+BUILDFLAGS  = -g3
+CXX         = g++ -pthread
+INCFLAGS    = ${INC_DIR}
+LDFLAGS     = ${LIB_DIR} -lsystemc -lm
+SRC_CPPHEAD = hello
+SRC_CPP     = $(SRC_CPPHEAD:=.cpp}
+MAIN        = main.cpp
+OBJECTS     = $(SRC_CPPHEAD:=.o)
+
+EXE = $(TARGET)
+
+all: $(EXE)
+
+$(EXE): $(MAIN) $(OBJECTS) $(HEADERS)
+	@echo "$@ building..."
+	$(CXX) $(INCFLAGS) $(MAIN) $(OBJECTS) $(LDFLAGS) -o $@
+	@echo ""
+	@echo "$@ build done successfully..."
+	@echo ""
+
+%.o:%.cpp %.h
+	$(CXX) -c $< $(INCFLAGS)
+
+clean:
+	rm -f $(EXE) \
+	rm -f *.o
 ```
 
 ### The end of this readme.md
