@@ -16,7 +16,7 @@ You need to install SystemC and GCC/G++ Compiler first.
 This example is from asic-world.com
 
 ```
-// All systemc modules should include systemc.h header file
+  1 // All systemc modules should include systemc.h header file
   2 #include "systemc.h"
   3 // Hello_world is module name
   4 SC_MODULE (hello_world) {
@@ -41,7 +41,7 @@ This example is from asic-world.com
 However, if you want to separate this example into 3 parts, i.e. hello.h, hello.cpp, and main.cpp, .
 It will look like the following code:
 
-1.helo.h
+1.hello.h
 ```
 #include "systemc.h"
 
