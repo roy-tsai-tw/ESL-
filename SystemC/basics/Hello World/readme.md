@@ -13,7 +13,7 @@ You need to install SystemC and GCC/G++ Compiler first.
 
 ### A simple code
 
-This example is from asic-world.com
+This example is from "asic-world.com".
 
 ```
   1 // All systemc modules should include systemc.h header file
@@ -38,7 +38,7 @@ This example is from asic-world.com
  20 }
 ```
 
-However, if you want to separate this example into 3 parts, i.e. hello.h, hello.cpp, and main.cpp, .
+However, if you want to separate this example into 3 parts, i.e. hello.h, hello.cpp, and main.cpp.
 It will look like the following code:
 
 1.hello.h
