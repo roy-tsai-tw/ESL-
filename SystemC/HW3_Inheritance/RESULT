@@ -1,0 +1,30 @@
+The original List object inList
+123 12 586 857 741 
+
+Copy the List using method 1 - copy constructor
+123 12 586 857 741 
+
+Copy the List using method 2 - assignment operator
+123 12 586 857 741 
+
+Copy the List using method 3 - copy every member function directly
+123 12 586 857 741 
+
+list1 + list 2
+246 24 1172 1714 1482 
+
+list1++
+124 13 587 858 742 
+
+++list2
+123 12 586 857 741 
+
+list1+=list2
+247 25 1173 1715 1483 
+
+list1--
+246 24 1172 1714 1482 
+
+--list1
+246 24 1172 1714 1482 
+

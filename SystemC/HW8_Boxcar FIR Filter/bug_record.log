@@ -1,0 +1,25 @@
+# Bug No.1:
+GTKWAVE | ...waveform reloaded
+./FIR16           make
+Compiling FIR16.cpp ...
+g++ -c FIR16.cpp -I. -I/usr/systemc/include
+FIR16 building...
+g++ -I. -I/usr/systemc/include main.cpp FIR16.o  -L/usr/systemc/lib-linux64 -lsystemc -lm -o FIR16
+
+FIR16 build done successfully...
+
+[roy@ICTool HW8]$ ./FIR16
+
+        SystemC 2.3.3-Accellera --- Mar 15 2021 22:20:55
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+Error: (E403) conversion failed: character string is empty                           // 因為input進來不能用sc_uint接，要改用int
+In file: datatypes/int/sc_uint_base.cpp:521
+
+# Bug No.2: 
+閱讀波形圖:
+如果是SC_CTHREAD, sc_signal中的值(用來model register)要看前一個clock的值才是真正的值。
+
+
+

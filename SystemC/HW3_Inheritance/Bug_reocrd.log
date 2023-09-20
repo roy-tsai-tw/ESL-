@@ -1,0 +1,80 @@
+    ┌──────────────────────────────────────────────────────────────────────┐
+    │                 • MobaXterm Personal Edition v21.2 •                 │
+    │               (SSH client, X server and network tools)               │
+    │                                                                      │
+    │ ➤ SSH session to roy@140.116.216.110                                 │
+    │   • Direct SSH      :  ✔                                             │
+    │   • SSH compression :  ✔                                             │
+    │   • SSH-browser     :  ✔                                             │
+    │   • X11-forwarding  :  ✔  (remote display is forwarded through SSH)  │
+    │                                                                      │
+    │ ➤ For more info, ctrl+click on help or visit our website.            │
+    └──────────────────────────────────────────────────────────────────────┘
+
+Last login: Sat Oct 30 21:21:37 2021 from 140.116.216.126
+[roy@ICTool ~]$ cd SystemC/HW3
+[roy@ICTool HW3]$ make
+g++ -O1 -Wall -c List.cpp
+List.cpp: In member function ‘int List::setLength(unsigned int)’:                                                                           /* return 忘了寫 */
+List.cpp:60:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+List.cpp: In function ‘std::ostream& operator<<(std::ostream&, List)’:                                                                      /* return 寫錯地方 */
+List.cpp:136:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+List.cpp: In function ‘std::istream& operator>>(std::istream&, List&)’:                                                                     /* return 寫錯地方 */
+List.cpp:145:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+g++ -O1 -Wall -c main.cpp
+In file included from /usr/include/c++/4.8.2/ios:42:0,
+                 from /usr/include/c++/4.8.2/ostream:38,
+                 from /usr/include/c++/4.8.2/iostream:39,
+                 from main.cpp:2:
+/usr/include/c++/4.8.2/bits/ios_base.h: In copy constructor ‘std::basic_ios<char>::basic_ios(const std::basic_ios<char>&)’:
+/usr/include/c++/4.8.2/bits/ios_base.h:786:5: error: ‘std::ios_base::ios_base(const std::ios_base&)’ is private
+     ios_base(const ios_base&);
+     ^
+In file included from /usr/include/c++/4.8.2/ios:44:0,
+                 from /usr/include/c++/4.8.2/ostream:38,
+                 from /usr/include/c++/4.8.2/iostream:39,
+                 from main.cpp:2:
+/usr/include/c++/4.8.2/bits/basic_ios.h:66:11: error: within this context
+     class basic_ios : public ios_base
+           ^
+In file included from /usr/include/c++/4.8.2/iostream:40:0,
+                 from main.cpp:2:
+/usr/include/c++/4.8.2/istream: In copy constructor ‘std::basic_istream<char>::basic_istream(const std::basic_istream<char>&)’:
+/usr/include/c++/4.8.2/istream:58:11: note: synthesized method ‘std::basic_ios<char>::basic_ios(const std::basic_ios<char>&)’ first required here
+     class basic_istream : virtual public basic_ios<_CharT, _Traits>
+           ^
+main.cpp: In function ‘int main(int, char**)’:
+main.cpp:17:22: note: synthesized method ‘std::basic_istream<char>::basic_istream(const std::basic_istream<char>&)’ first required here
+             iFile >> inList;
+                      ^
+In file included from main.cpp:5:0:                                                                                                        /* istream&寫成istream(少寫&) */ 
+List.h:26:25: error:   initializing argument 1 of ‘std::istream& operator>>(std::istream, List&)’
+         friend istream& operator>>(std::istream, List &);
+                         ^
+main.cpp:25:26: error: invalid conversion from ‘List*’ to ‘unsigned int’ [-fpermissive]                                                    /* 直接寫inList而非inList_ptr */ 
+     List list1(inList_ptr);
+                          ^
+In file included from main.cpp:5:0:
+List.h:11:9: error:   initializing argument 1 of ‘List::List(unsigned int)’ [-fpermissive]                                                 /* 直接寫inList而非inList_ptr */ 
+         List(unsigned int _length);
+         ^
+main.cpp:43:21: error: expected primary-expression before ‘int’
+     list3 = list2++(int);
+                     ^
+main.cpp:58:21: error: expected primary-expression before ‘int’
+     list3 = list1--(int);
+                     ^
+make: *** [main.o] Error 1
+[roy@ICTool HW3]$
+
+error: ‘assert’ was not declared in this scope                                                                                          /* 加入 #include <cassert> */ 
+
+error: passing xxx as 'this' argument of xxx discards qualifiers                                                                        /* 應使用this->Node::get_Node() */
+
+error: Permission denied.  (./main.o List)                                                                                              /* 執行檔名稱為list而不是main.o，因此要打 ./list List */
